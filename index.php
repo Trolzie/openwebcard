@@ -1,5 +1,4 @@
 <?php //require('includes/config.php'); ?>
-<?php $pageName="Home"; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
