@@ -27,7 +27,7 @@ require_once('config.php');
 		if($user->login($username,$password)){
 
 			//logged in rgo to profile page
-			header('Location: profile.php');
+			header('Location: profile');
 			exit;
 
 		} else {

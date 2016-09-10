@@ -22,11 +22,11 @@ class User extends Password{
 
 		try {
 
-			$stmt = $this->_db->prepare('SELECT password FROM owc_users WHERE username = :username');
+			$stmt = $this->_db->prepare('SELECT userID, password FROM owc_users WHERE username = :username');
 			$stmt->execute(array('username' => $username));
 
 			$row = $stmt->fetch();
-			return $row['password'];
+			return $row;
 
 		} catch(PDOException $e) {
 			echo '<p class="error">'.$e->getMessage().'</p>';
@@ -36,11 +36,13 @@ class User extends Password{
 
 	public function login($username,$password){
 
-		$hashed = $this->get_user_hash($username);
+		$userHash = $this->get_user_hash($username);
+		$hashed = $userHash['password'];
 
 		if($this->password_verify($password,$hashed) == 1){
 
 			$_SESSION['loggedin'] = true;
+			$_SESSION['userID'] = $userHash['userID'];
 			return true;
 		}
 	}

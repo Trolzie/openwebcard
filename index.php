@@ -1,4 +1,5 @@
-<?php //require('includes/config.php'); ?>
+<?php require('config.php'); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
