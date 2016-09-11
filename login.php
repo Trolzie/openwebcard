@@ -3,7 +3,7 @@
 require_once('config.php');
 
 //check if already logged in
-//if( $user->is_logged_in() ){ header('Location: profile.php'); }
+if( $user->is_logged_in() ){ header('Location: profile.php'); }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,17 +21,17 @@ require_once('config.php');
 	//process login form if submitted
 	if(isset($_POST['submit'])){
 
-		$username = trim($_POST['username']);
+		$email = trim($_POST['email']);
 		$password = trim($_POST['password']);
 
-		if($user->login($username,$password)){
+		if($user->login($email,$password)){
 
 			//logged in rgo to profile page
 			header('Location: profile');
 			exit;
 
 		} else {
-			$message = '<p class="error">Wrong username or password</p>';
+			$message = '<p class="error">Wrong email or password</p>';
 		}
 
 	}//end of submit
@@ -40,7 +40,7 @@ require_once('config.php');
 	?>
 
 	<form action="" method="post">
-		<label>Username</label><input type="text" name="username" value=""  /><br>
+		<label>Email</label><input type="text" name="email" value=""  /><br>
 		<label>Password</label><input type="password" name="password" value=""  /><br>
 		<label></label><input type="submit" name="submit" value="Login"  /><br>
 	</form>

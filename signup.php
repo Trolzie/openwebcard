@@ -30,8 +30,11 @@ require_once('config.php');
 		extract($_POST);
 
 		//very basic validation
-		if($username ==''){
-			$error[] = 'Please enter the username.';
+		// if($username ==''){
+		// 	$error[] = 'Please enter the username.';
+		// }
+		if($email ==''){
+			$error[] = 'Please enter the email address.';
 		}
 
 		if($password ==''){
@@ -46,9 +49,6 @@ require_once('config.php');
 			$error[] = 'Passwords do not match.';
 		}
 
-		if($email ==''){
-			$error[] = 'Please enter the email address.';
-		}
 
 		if(!isset($error)){
 
@@ -57,11 +57,10 @@ require_once('config.php');
 			try {
 
 				//insert into database
-				$stmt = $db->prepare('INSERT INTO blog_members (username,password,email) VALUES (:username, :password, :email)') ;
+				$stmt = $db->prepare('INSERT INTO owc_users (email,password) VALUES (:email, :password)') ;
 				$stmt->execute(array(
-					':username' => $username,
-					':password' => $hashedpassword,
-					':email' => $email
+					':email' => $email,
+					':password' => $hashedpassword
 				));
 
 				//redirect to index page
@@ -86,8 +85,10 @@ require_once('config.php');
 
 	<form action='' method='post'>
 
-		<p><label>Username</label><br />
-		<input type='text' name='username' value='<?php if(isset($error)){ echo $_POST['username'];}?>'></p>
+		<!-- <p><label>Username</label><br />
+		<input type='text' name='username' value='<?php if(isset($error)){ echo $_POST['username'];}?>'></p> -->
+		<p><label>Email</label><br />
+		<input type='text' name='email' value='<?php if(isset($error)){ echo $_POST['email'];}?>'></p>
 
 		<p><label>Password</label><br />
 		<input type='password' name='password' value='<?php if(isset($error)){ echo $_POST['password'];}?>'></p>
@@ -95,10 +96,8 @@ require_once('config.php');
 		<p><label>Confirm Password</label><br />
 		<input type='password' name='passwordConfirm' value='<?php if(isset($error)){ echo $_POST['passwordConfirm'];}?>'></p>
 
-		<p><label>Email</label><br />
-		<input type='text' name='email' value='<?php if(isset($error)){ echo $_POST['email'];}?>'></p>
 
-		<p><input type='submit' name='submit' value='Add User'></p>
+		<p><input type='submit' name='submit' value='Signup'></p>
 
 	</form>
 

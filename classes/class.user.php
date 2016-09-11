@@ -18,12 +18,12 @@ class User extends Password{
 		}
 	}
 
-	private function get_user_hash($username){
+	private function get_user_hash($email){
 
 		try {
 
-			$stmt = $this->_db->prepare('SELECT userID, password FROM owc_users WHERE username = :username');
-			$stmt->execute(array('username' => $username));
+			$stmt = $this->_db->prepare('SELECT userID, password FROM owc_users WHERE email = :email');
+			$stmt->execute(array('email' => $email));
 
 			$row = $stmt->fetch();
 			return $row;
@@ -34,9 +34,9 @@ class User extends Password{
 	}
 
 
-	public function login($username,$password){
+	public function login($email,$password){
 
-		$userHash = $this->get_user_hash($username);
+		$userHash = $this->get_user_hash($email);
 		$hashed = $userHash['password'];
 
 		if($this->password_verify($password,$hashed) == 1){
