@@ -21,7 +21,7 @@
 
 		<h2>The simplest tool for creating a simple online business card or profile in under 5 minutes.</h2>
 
-		<a href="/signup">Signup</a>
+		<a href="signup.php">Signup</a>
 
 		<br>
 		<br>
