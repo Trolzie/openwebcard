@@ -10,10 +10,10 @@ if ($_SESSION['loggedin'] == 1) {
 
 // if(!$user->is_logged_in()){ header('Location: ../index.php'); }
 
-$userID = $_SESSION['userID'];
-$stmt = $db->prepare('SELECT userHeading, userSubheading, userBody, userKey FROM owc_userdata WHERE userKey = :userKey');
-$stmt->execute(array(':userKey' => $_SESSION['userID']));
-$row = $stmt->fetch();
+// $userID = $_SESSION['userID'];
+// $stmt = $db->prepare('SELECT userHeading, userSubheading, userBody, userKey FROM owc_userdata WHERE userKey = :userKey');
+// $stmt->execute(array(':userKey' => $_SESSION['userID']));
+// $row = $stmt->fetch();
 ?>
 
 <!doctype html>
@@ -69,7 +69,7 @@ $row = $stmt->fetch();
 				try {
 
 					//insert into database
-					$stmt = $db->prepare('UPDATE owc_userdata SET userHeading = :userHeading, userSubheading = :userSubheading, userBody = :userBody, WHERE userKey = :userKey') ;
+					$stmt = $db->prepare('UPDATE owc_userdata SET userHeading = :userHeading, userSubheading = :userSubheading, userBody = :userBody WHERE userKey = :userKey');
 					$stmt->execute(array(
 						':userHeading' => $userHeading,
 						':userSubheading' => $userSubheading,
@@ -93,7 +93,13 @@ $row = $stmt->fetch();
 
 	?>
 
-	
+
+	<?php
+		$userID = $_SESSION['userID'];
+		$stmt = $db->prepare('SELECT userHeading, userSubheading, userBody, userKey FROM owc_userdata WHERE userKey = :userKey');
+		$stmt->execute(array(':userKey' => $_SESSION['userID']));
+		$row = $stmt->fetch();
+	?>
 
 	<form action="" method="post">
 		<input type="hidden" name="userKey" value="<?php echo $row['userKey'];?>">
