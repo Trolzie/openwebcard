@@ -45,5 +45,7 @@ if( $user->is_logged_in() ){ header('Location: profile'); }
 		<label></label><input type="submit" name="submit" value="Login"  /><br>
 	</form>
 
+	<p>go to <a href="index.php">Home</a> page.</p>
+
 </body>
 </html>

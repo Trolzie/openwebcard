@@ -73,8 +73,32 @@ require_once('config.php');
 						':userId' => $userId
 					));
 
+					//send confirmation email
+					$code=substr(md5(mt_rand()),0,15);
+					$message = "Your Activation Code is ".$code."";
+					$to=$email;
+					$subject="Activation Code For OpenWebCard.com";
+					// $from='no-reply@openwebcard.com';
+					// $headers = "From:".$from;
+					// $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+					$fromTitle = "From Title";
+					$emailFrom = 'no-reply@openwebcard.com';
+					$emailTo   = $email;
+					$header = "From: $fromTitle <$emailFrom>\r\n";
+					$header .= "Reply-To: ".$emailFrom."\r\n";
+					$header .= "MIME-Version: 1.0\r\n";
+					$header .= "Content-Type: multipart/mixed; boundary=\"".$random_hash."\"\r\n\r\n";
+					$header .= "This is token email.\r\n";
+					$header .= "--".$random_hash."\r\n";
+					$header .= "Content-type:text/html; charset=UTF-8\r\n";
+					$header .= "Content-Transfer-Encoding: 7bit\r\n\r\n";
+					
+					$body='Your Activation Code is '.$code.' Please Click On This link <a href="verification.php">Verify.php?id='.$db_id.'&code='.$code.'</a>to activate  your account.';
+
+					mail($to,$subject,$body,$headers);
+
 					//redirect to index page
-					// header('Location: ');
+					header('Location: signup.php?action=success');
 					exit;
 
 				} catch(PDOException $e) {
@@ -104,22 +128,30 @@ require_once('config.php');
 	}
 	?>
 
-	<form action='' method='post'>
+	<?php if(isset($_GET['action'])){ ?>
 
-		<!-- <p><label>Username</label><br />
-		<input type='text' name='username' value='<?php if(isset($error)){ echo $_POST['username'];}?>'></p> -->
-		<p><label>Email</label><br />
-		<input type='text' name='email' value='<?php if(isset($error)){ echo $_POST['email'];}?>'></p>
+		<p>A confirmation email has been sent to your inbox.</p>
+		<p>go to <a href="login.php">Login</a> page.</p>
 
-		<p><label>Password</label><br />
-		<input type='password' name='password' value='<?php if(isset($error)){ echo $_POST['password'];}?>'></p>
+	<?php } else { ?>
 
-		<p><label>Confirm Password</label><br />
-		<input type='password' name='passwordConfirm' value='<?php if(isset($error)){ echo $_POST['passwordConfirm'];}?>'></p>
+		<form action='' method='post'>
 
+			<!-- <p><label>Username</label><br />
+			<input type='text' name='username' value='<?php if(isset($error)){ echo $_POST['username'];}?>'></p> -->
+			<p><label>Email</label><br />
+			<input type='text' name='email' value='<?php if(isset($error)){ echo $_POST['email'];}?>'></p>
 
-		<p><input type='submit' name='submit' value='Signup'></p>
+			<p><label>Password</label><br />
+			<input type='password' name='password' value='<?php if(isset($error)){ echo $_POST['password'];}?>'></p>
 
-	</form>
+			<p><label>Confirm Password</label><br />
+			<input type='password' name='passwordConfirm' value='<?php if(isset($error)){ echo $_POST['passwordConfirm'];}?>'></p>
+
+			<p><input type='submit' name='submit' value='Signup'></p>
+
+		</form>
+
+	<?php } ?>
 
 </div>
