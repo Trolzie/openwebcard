@@ -57,18 +57,39 @@ require_once('config.php');
 			try {
 
 				//insert into database
-				$stmt = $db->prepare('INSERT INTO owc_users (email,password) VALUES (:email, :password)') ;
+				$stmt = $db->prepare('INSERT INTO owc_users (email,password) VALUES (:email, :password)');
 				$stmt->execute(array(
 					':email' => $email,
 					':password' => $hashedpassword
 				));
 
+				$userId = $db->lastInsertId();
+
+				try {
+
+					//insert into database
+					$stmt = $db->prepare('INSERT INTO owc_userdata (userKey) VALUES (:userId)');
+					$stmt->execute(array(
+						':userId' => $userId
+					));
+
+					//redirect to index page
+					// header('Location: ');
+					exit;
+
+				} catch(PDOException $e) {
+					echo $e->getMessage();
+				}
+
+
+
+
 				//redirect to index page
-				header('Location: users.php?action=added');
+				// header('Location: ');
 				exit;
 
 			} catch(PDOException $e) {
-			    echo $e->getMessage();
+				echo $e->getMessage();
 			}
 
 		}
