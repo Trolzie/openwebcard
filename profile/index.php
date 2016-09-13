@@ -10,11 +10,12 @@ if ($_SESSION['loggedin'] == 1) {
 
 // if(!$user->is_logged_in()){ header('Location: ../index.php'); }
 
-$stmt = $db->prepare('SELECT userHeading, userSubheading, userBody FROM owc_userdata WHERE userdataID = :postID');
-$stmt->execute(array(':postID' => $_SESSION['userID']));
+$userID = $_SESSION['userID'];
+$stmt = $db->prepare('SELECT userHeading, userSubheading, userBody, userKey FROM owc_userdata WHERE userKey = :userKey');
+$stmt->execute(array(':userKey' => $_SESSION['userID']));
 $row = $stmt->fetch();
-
 ?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -55,13 +56,13 @@ $row = $stmt->fetch();
 			// 	$error[] = 'Please enter the content.';
 			// }
 
-			echo $userHeading;
-			echo $userSubheading;
-			echo $userBody;
-			echo "-   ";
-			echo $userKey;
-			echo $row['userKey'];
-			echo "   -";
+			// echo $userHeading;
+			// echo $userSubheading;
+			// echo $userBody;
+			// echo "-   ";
+			// echo $userKey;
+			// echo $row['userKey'];
+			// echo "   -";
 
 			if(!isset($error)){
 
@@ -85,14 +86,17 @@ $row = $stmt->fetch();
 				    echo $e->getMessage();
 				}
 
-			}
+			}		
 
 		}
 
+
 	?>
 
+	
+
 	<form action="" method="post">
-		<input type='hidden' name='userKey' value='<?php echo $row['userKey'];?>'>
+		<input type="hidden" name="userKey" value="<?php echo $row['userKey'];?>">
 		<label>userHeading</label><input type="text" name="userHeading" value="<?php echo $row['userHeading']; ?>"/><br>
 		<label>userSubheading</label><input type="text" name="userSubheading" value="<?php echo $row['userSubheading']; ?>"/><br>
 		<label>userBody</label><textarea type="text" name="userBody" rows="6" cols="50"/><?php echo $row['userBody']; ?></textarea><br>

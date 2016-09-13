@@ -3,7 +3,7 @@
 require_once('config.php');
 
 //check if already logged in
-if( $user->is_logged_in() ){ header('Location: profile.php'); }
+if( $user->is_logged_in() ){ header('Location: profile'); }
 ?>
 <!DOCTYPE html>
 <html lang="en">
