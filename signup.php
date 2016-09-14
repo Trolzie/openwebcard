@@ -22,7 +22,6 @@ require_once('config.php');
 	<!-- <h2>Add User</h2> -->
 
 	<?php
-
 	//if form has been submitted process it
 	if(isset($_POST['submit'])){
 
@@ -49,16 +48,17 @@ require_once('config.php');
 			$error[] = 'Passwords do not match.';
 		}
 
-
 		if(!isset($error)){
 
 			$hashedpassword = $user->password_hash($password, PASSWORD_BCRYPT);
+			$code=substr(md5(mt_rand()),0,15);
 
 			try {
 
 				//insert into database
-				$stmt = $db->prepare('INSERT INTO owc_users (email,password) VALUES (:email, :password)');
+				$stmt = $db->prepare('INSERT INTO owc_users (activated,email,password) VALUES (:activated, :email, :password)');
 				$stmt->execute(array(
+					':activated' => $code,
 					':email' => $email,
 					':password' => $hashedpassword
 				));
@@ -74,27 +74,15 @@ require_once('config.php');
 					));
 
 					//send confirmation email
-					$code=substr(md5(mt_rand()),0,15);
-					$message = "Your Activation Code is ".$code."";
-					$to=$email;
 					$subject="Activation Code For OpenWebCard.com";
-					// $from='no-reply@openwebcard.com';
-					// $headers = "From:".$from;
-					// $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
-					$fromTitle = "From Title";
-					$emailFrom = 'no-reply@openwebcard.com';
-					$emailTo   = $email;
-					$header = "From: $fromTitle <$emailFrom>\r\n";
-					$header .= "Reply-To: ".$emailFrom."\r\n";
-					$header .= "MIME-Version: 1.0\r\n";
-					$header .= "Content-Type: multipart/mixed; boundary=\"".$random_hash."\"\r\n\r\n";
-					$header .= "This is token email.\r\n";
-					$header .= "--".$random_hash."\r\n";
-					$header .= "Content-type:text/html; charset=UTF-8\r\n";
-					$header .= "Content-Transfer-Encoding: 7bit\r\n\r\n";
-					
-					$body='Your Activation Code is '.$code.' Please Click On This link <a href="verification.php">Verify.php?id='.$db_id.'&code='.$code.'</a>to activate  your account.';
-
+					$verificationLink = 'http://openwebcard.com/verification.php.php?id='.$userId.'&code='.$code;
+					$body='Your Activation Code is '.$code.' Please Click On This link <a href="'.$verificationLink.'">'.$verificationLink.'</a>to activate  your account.';
+					$headers  = 'MIME-Version: 1.0' . "\r\n";
+					$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+					// Additional headers
+					$headers .= 'To: ' . $email . "\r\n";
+					$headers .= 'From: Activate OWC Account <no-reply@openwebcard.com>' . "\r\n";
+					//send mail
 					mail($to,$subject,$body,$headers);
 
 					//redirect to index page
@@ -105,9 +93,6 @@ require_once('config.php');
 					echo $e->getMessage();
 				}
 
-
-
-
 				//redirect to index page
 				// header('Location: ');
 				exit;
@@ -115,9 +100,7 @@ require_once('config.php');
 			} catch(PDOException $e) {
 				echo $e->getMessage();
 			}
-
 		}
-
 	}
 
 	//check for any errors
@@ -126,6 +109,7 @@ require_once('config.php');
 			echo '<p class="error">'.$error.'</p>';
 		}
 	}
+
 	?>
 
 	<?php if(isset($_GET['action'])){ ?>
@@ -155,3 +139,6 @@ require_once('config.php');
 	<?php } ?>
 
 </div>
+
+</body>
+</html>
