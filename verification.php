@@ -26,21 +26,25 @@ if(isset($_GET['id']) && isset($_GET['code']))
 
 	echo $code;
 
+	// currently not finding any results
 	$stmt = $db->prepare('SELECT email FROM owc_users WHERE userID = :userID AND activated = :activated');
 	$stmt->execute(array(
 		':userID' => $id,
 		':activated' => $code
 	));
 	$row = $stmt->fetch();
+	// $rows = $stmt->fetchAll();
+	// $num_rows = count($rows);
 
+	echo $row['email'];
 
-	if(count($row)==1) {
+	if($row==1) {
 		echo "WORKING!";
 	} else {
 		echo "NOT WORKING!";
 	}
 
-	echo count($row);
+	// echo count($row);
 
 	// mysql_connect('localhost','root','');
 	// mysql_select_db('sample');
