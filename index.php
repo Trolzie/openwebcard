@@ -1,4 +1,7 @@
-<?php require('config.php'); ?>
+<?php
+//include config
+require_once('config.php');
+?>
 
 <!DOCTYPE html>
 <html lang="en">

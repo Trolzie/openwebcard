@@ -1,4 +1,6 @@
-<?php require_once('../config.php');
+<?php
+//include config
+require_once('../config.php');
 
 if ($_SESSION['loggedin'] == 1) {
 	echo "logged in, " . "user id: " . $_SESSION['userID'];
@@ -10,10 +12,6 @@ if ($_SESSION['loggedin'] == 1) {
 
 // if(!$user->is_logged_in()){ header('Location: ../index.php'); }
 
-// $userID = $_SESSION['userID'];
-// $stmt = $db->prepare('SELECT userHeading, userSubheading, userBody, userKey FROM owc_userdata WHERE userKey = :userKey');
-// $stmt->execute(array(':userKey' => $_SESSION['userID']));
-// $row = $stmt->fetch();
 ?>
 
 <!doctype html>
@@ -40,30 +38,6 @@ if ($_SESSION['loggedin'] == 1) {
 			//collect form data
 			extract($_POST);
 
-			// if($postID ==''){
-			// 	$error[] = 'This post is missing a valid id!.';
-			// }
-
-			// if($postTitle ==''){
-			// 	$error[] = 'Please enter the title.';
-			// }
-
-			// if($postDesc ==''){
-			// 	$error[] = 'Please enter the description.';
-			// }
-
-			// if($postCont ==''){
-			// 	$error[] = 'Please enter the content.';
-			// }
-
-			// echo $userHeading;
-			// echo $userSubheading;
-			// echo $userBody;
-			// echo "-   ";
-			// echo $userKey;
-			// echo $row['userKey'];
-			// echo "   -";
-
 			if(!isset($error)){
 
 				try {
@@ -85,14 +59,10 @@ if ($_SESSION['loggedin'] == 1) {
 				} catch(PDOException $e) {
 				    echo $e->getMessage();
 				}
-
-			}		
-
+			}
 		}
 
-
 	?>
-
 
 	<?php
 		$userID = $_SESSION['userID'];
