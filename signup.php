@@ -75,7 +75,7 @@ require_once('config.php');
 
 					//send confirmation email
 					$subject="Activation Code For OpenWebCard.com";
-					$verificationLink = 'http://openwebcard.com/verification.php.php?id='.$userId.'&code='.$code;
+					$verificationLink = 'http://openwebcard.com/verification.php?id='.$userId.'&code='.$code;
 					$body='Your Activation Code is '.$code.' Please Click On This link <a href="'.$verificationLink.'">'.$verificationLink.'</a>to activate  your account.';
 					$headers  = 'MIME-Version: 1.0' . "\r\n";
 					$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";

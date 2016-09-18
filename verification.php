@@ -27,16 +27,17 @@ if(isset($_GET['id']) && isset($_GET['code']))
 	echo $code;
 
 	// currently not finding any results
-	$stmt = $db->prepare('SELECT email FROM owc_users WHERE userID = :userID AND activated = :activated');
+	$stmt = $db->prepare('SELECT COUNT(*) FROM owc_users WHERE userID = :userID AND activated = :activated');
 	$stmt->execute(array(
 		':userID' => $id,
 		':activated' => $code
 	));
-	$row = $stmt->fetch();
-	// $rows = $stmt->fetchAll();
-	// $num_rows = count($rows);
+	// $row = $stmt->fetch();
+	$row = $stmt->fetchAll();
+	// $num_rows = count($row);
 
-	echo $row['email'];
+	// echo $row['email'];
+	// echo $num_rows;
 
 	if($row==1) {
 		echo "WORKING!";
