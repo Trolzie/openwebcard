@@ -23,63 +23,69 @@ if ($_SESSION['loggedin'] == 1) {
 </head>
 <body>
 
-	<h1>Open Web Card Profile</h1>
+	<header></header>
 
-	<p>welcome to your profile. Before we can create an online businesscard, we need to find out what you want to display.</p>
+	<section>
+		
+		<h1>Open Web Card Profile</h1>
 
-	<h2>Your current profile:</h2>
+		<p>welcome to your profile. Before we can create an online businesscard, we need to find out what you want to display.</p>
 
-	<?php
+		<h2>Your current profile:</h2>
 
-		if(isset($_POST['submit'])){
+		<?php
 
-			$_POST = array_map( 'stripslashes', $_POST );
+			if(isset($_POST['submit'])){
 
-			//collect form data
-			extract($_POST);
+				$_POST = array_map( 'stripslashes', $_POST );
 
-			if(!isset($error)){
+				//collect form data
+				extract($_POST);
 
-				try {
+				if(!isset($error)){
 
-					//insert into database
-					$stmt = $db->prepare('UPDATE owc_userdata SET userHeading = :userHeading, userSubheading = :userSubheading, userBody = :userBody WHERE userKey = :userKey');
-					$stmt->execute(array(
-						':userHeading' => $userHeading,
-						':userSubheading' => $userSubheading,
-						':userBody' => $userBody,
-						':userKey' => $userKey
-					));
+					try {
 
-					// redirect to index page
-					// header('Location: index.php?action=updated');
-					header('Location: index.php');
-					exit;
+						//insert into database
+						$stmt = $db->prepare('UPDATE owc_userdata SET userHeading = :userHeading, userSubheading = :userSubheading, userBody = :userBody WHERE userKey = :userKey');
+						$stmt->execute(array(
+							':userHeading' => $userHeading,
+							':userSubheading' => $userSubheading,
+							':userBody' => $userBody,
+							':userKey' => $userKey
+						));
 
-				} catch(PDOException $e) {
-				    echo $e->getMessage();
+						// redirect to index page
+						// header('Location: index.php?action=updated');
+						header('Location: index.php');
+						exit;
+
+					} catch(PDOException $e) {
+					    echo $e->getMessage();
+					}
 				}
 			}
-		}
 
-	?>
+		?>
 
-	<?php
-		$userID = $_SESSION['userID'];
-		$stmt = $db->prepare('SELECT userHeading, userSubheading, userBody, userKey FROM owc_userdata WHERE userKey = :userKey');
-		$stmt->execute(array(':userKey' => $_SESSION['userID']));
-		$row = $stmt->fetch();
-	?>
+		<?php
+			$userID = $_SESSION['userID'];
+			$stmt = $db->prepare('SELECT userHeading, userSubheading, userBody, userKey FROM owc_userdata WHERE userKey = :userKey');
+			$stmt->execute(array(':userKey' => $_SESSION['userID']));
+			$row = $stmt->fetch();
+		?>
 
-	<form action="" method="post">
-		<input type="hidden" name="userKey" value="<?php echo $row['userKey'];?>">
-		<label>userHeading</label><input type="text" name="userHeading" value="<?php echo $row['userHeading']; ?>"/><br>
-		<label>userSubheading</label><input type="text" name="userSubheading" value="<?php echo $row['userSubheading']; ?>"/><br>
-		<label>userBody</label><textarea type="text" name="userBody" rows="6" cols="50"/><?php echo $row['userBody']; ?></textarea><br>
-		<label></label><input type="submit" name="submit" value="Save"/><br>
-	</form>
+		<form action="" method="post">
+			<input type="hidden" name="userKey" value="<?php echo $row['userKey'];?>">
+			<label>userHeading</label><input type="text" name="userHeading" value="<?php echo $row['userHeading']; ?>"/><br>
+			<label>userSubheading</label><input type="text" name="userSubheading" value="<?php echo $row['userSubheading']; ?>"/><br>
+			<label>userBody</label><textarea type="text" name="userBody" rows="6" cols="50"/><?php echo $row['userBody']; ?></textarea><br>
+			<label></label><input type="submit" name="submit" value="Save"/><br>
+		</form>
 
-	<a href='logout.php'>Logout</a>
+		<a href='logout.php'>Logout</a>
+		
+	</section>
 
 </body>
 </html>

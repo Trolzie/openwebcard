@@ -14,131 +14,137 @@ require_once('config.php');
 </head>
 <body>
 
-<div id="wrapper">
+	<header></header>
 
-	<?php //include('menu.php');?>
-	<!-- <p><a href="users.php">User Admin Index</a></p> -->
+	<section>
+		
+		<h1>Signup to use Open Web Card</h1>
 
-	<!-- <h2>Add User</h2> -->
+		<h2>This is the only signup step there is. All you need to do is enter email and password and wait for your confirmation mail.</h2>
 
-	<?php
-	//if form has been submitted process it
-	if(isset($_POST['submit'])){
+		<?php //include('menu.php');?>
+		<!-- <p><a href="users.php">User Admin Index</a></p> -->
 
-		//collect form data
-		extract($_POST);
+		<!-- <h2>Add User</h2> -->
 
-		//very basic validation
-		// if($username ==''){
-		// 	$error[] = 'Please enter the username.';
-		// }
-		if($email ==''){
-			$error[] = 'Please enter the email address.';
-		}
+		<?php
+		//if form has been submitted process it
+		if(isset($_POST['submit'])){
 
-		if($password ==''){
-			$error[] = 'Please enter the password.';
-		}
+			//collect form data
+			extract($_POST);
 
-		if($passwordConfirm ==''){
-			$error[] = 'Please confirm the password.';
-		}
+			//very basic validation
+			// if($username ==''){
+			// 	$error[] = 'Please enter the username.';
+			// }
+			if($email ==''){
+				$error[] = 'Please enter the email address.';
+			}
 
-		if($password != $passwordConfirm){
-			$error[] = 'Passwords do not match.';
-		}
+			if($password ==''){
+				$error[] = 'Please enter the password.';
+			}
 
-		if(!isset($error)){
+			if($passwordConfirm ==''){
+				$error[] = 'Please confirm the password.';
+			}
 
-			$hashedpassword = $user->password_hash($password, PASSWORD_BCRYPT);
-			$code=substr(md5(mt_rand()),0,15);
+			if($password != $passwordConfirm){
+				$error[] = 'Passwords do not match.';
+			}
 
-			try {
+			if(!isset($error)){
 
-				//insert into database
-				$stmt = $db->prepare('INSERT INTO owc_users (activated,email,password) VALUES (:activated, :email, :password)');
-				$stmt->execute(array(
-					':activated' => $code,
-					':email' => $email,
-					':password' => $hashedpassword
-				));
-
-				$userId = $db->lastInsertId();
+				$hashedpassword = $user->password_hash($password, PASSWORD_BCRYPT);
+				$code=substr(md5(mt_rand()),0,15);
 
 				try {
 
 					//insert into database
-					$stmt = $db->prepare('INSERT INTO owc_userdata (userKey) VALUES (:userId)');
+					$stmt = $db->prepare('INSERT INTO owc_users (activated,email,password) VALUES (:activated, :email, :password)');
 					$stmt->execute(array(
-						':userId' => $userId
+						':activated' => $code,
+						':email' => $email,
+						':password' => $hashedpassword
 					));
 
-					//send confirmation email
-					$subject="Activation Code For OpenWebCard.com";
-					$verificationLink = 'http://openwebcard.com/verification.php?id='.$userId.'&code='.$code;
-					$body='Your Activation Code is '.$code.' Please Click On This link <a href="'.$verificationLink.'">'.$verificationLink.'</a>to activate  your account.';
-					$headers  = 'MIME-Version: 1.0' . "\r\n";
-					$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-					// Additional headers
-					$headers .= 'To: ' . $email . "\r\n";
-					$headers .= 'From: Activate OWC Account <no-reply@openwebcard.com>' . "\r\n";
-					//send mail
-					mail($to,$subject,$body,$headers);
+					$userId = $db->lastInsertId();
+
+					try {
+
+						//insert into database
+						$stmt = $db->prepare('INSERT INTO owc_userdata (userKey) VALUES (:userId)');
+						$stmt->execute(array(
+							':userId' => $userId
+						));
+
+						//send confirmation email
+						$subject="Activation Code For OpenWebCard.com";
+						$verificationLink = 'http://openwebcard.com/verification.php?id='.$userId.'&code='.$code;
+						$body='Your Activation Code is '.$code.' Please Click On This link <a href="'.$verificationLink.'">'.$verificationLink.'</a>to activate  your account.';
+						$headers  = 'MIME-Version: 1.0' . "\r\n";
+						$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+						// Additional headers
+						$headers .= 'To: ' . $email . "\r\n";
+						$headers .= 'From: Activate OWC Account <no-reply@openwebcard.com>' . "\r\n";
+						//send mail
+						mail($to,$subject,$body,$headers);
+
+						//redirect to index page
+						header('Location: signup.php?action=success');
+						exit;
+
+					} catch(PDOException $e) {
+						echo $e->getMessage();
+					}
 
 					//redirect to index page
-					header('Location: signup.php?action=success');
+					// header('Location: ');
 					exit;
 
 				} catch(PDOException $e) {
 					echo $e->getMessage();
 				}
-
-				//redirect to index page
-				// header('Location: ');
-				exit;
-
-			} catch(PDOException $e) {
-				echo $e->getMessage();
 			}
 		}
-	}
 
-	//check for any errors
-	if(isset($error)){
-		foreach($error as $error){
-			echo '<p class="error">'.$error.'</p>';
+		//check for any errors
+		if(isset($error)){
+			foreach($error as $error){
+				echo '<p class="error">'.$error.'</p>';
+			}
 		}
-	}
 
-	?>
+		?>
 
-	<?php if(isset($_GET['action'])){ ?>
+		<?php if(isset($_GET['action'])){ ?>
 
-		<p>A confirmation email has been sent to your inbox.</p>
-		<p>go to <a href="login.php">Login</a> page.</p>
+			<p>A confirmation email has been sent to your inbox.</p>
+			<p>go to <a href="login.php">Login</a> page.</p>
 
-	<?php } else { ?>
+		<?php } else { ?>
 
-		<form action='' method='post'>
+			<form action='' method='post'>
 
-			<!-- <p><label>Username</label><br />
-			<input type='text' name='username' value='<?php if(isset($error)){ echo $_POST['username'];}?>'></p> -->
-			<p><label>Email</label><br />
-			<input type='text' name='email' value='<?php if(isset($error)){ echo $_POST['email'];}?>'></p>
+				<!-- <p><label>Username</label><br />
+				<input type='text' name='username' value='<?php if(isset($error)){ echo $_POST['username'];}?>'></p> -->
+				<p><label>Email</label><br />
+				<input type='text' name='email' value='<?php if(isset($error)){ echo $_POST['email'];}?>'></p>
 
-			<p><label>Password</label><br />
-			<input type='password' name='password' value='<?php if(isset($error)){ echo $_POST['password'];}?>'></p>
+				<p><label>Password</label><br />
+				<input type='password' name='password' value='<?php if(isset($error)){ echo $_POST['password'];}?>'></p>
 
-			<p><label>Confirm Password</label><br />
-			<input type='password' name='passwordConfirm' value='<?php if(isset($error)){ echo $_POST['passwordConfirm'];}?>'></p>
+				<p><label>Confirm Password</label><br />
+				<input type='password' name='passwordConfirm' value='<?php if(isset($error)){ echo $_POST['passwordConfirm'];}?>'></p>
 
-			<p><input type='submit' name='submit' value='Signup'></p>
+				<p><input type='submit' name='submit' value='Signup'></p>
 
-		</form>
+			</form>
 
-	<?php } ?>
-
-</div>
+		<?php } ?>
+		
+	</section>
 
 </body>
 </html>

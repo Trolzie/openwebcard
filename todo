@@ -1,5 +1,17 @@
 TODO:
 
+public profile page url beautify
+
+profile image
+
 front page layout and design
 
-themes
+theme ideas: reverse current color sheme
+
+theme swtch (no custom styling yet, just 3 themes. 1 light, 1 dark, 1 semi colourful)
+
+create a 404 page
+
+password reset / lost password
+	- password reset page
+	- verification for password change

@@ -14,38 +14,44 @@ if( $user->is_logged_in() ){ header('Location: profile'); }
 </head>
 <body>
 
-	<h1>Login to Open Web Card</h1>
+	<header></header>
 
-	<?php
+	<section>
+		
+		<h1>Login to Open Web Card</h1>
 
-	//process login form if submitted
-	if(isset($_POST['submit'])){
+		<?php
 
-		$email = trim($_POST['email']);
-		$password = trim($_POST['password']);
+		//process login form if submitted
+		if(isset($_POST['submit'])){
 
-		if($user->login($email,$password)){
+			$email = trim($_POST['email']);
+			$password = trim($_POST['password']);
 
-			//logged in rgo to profile page
-			header('Location: profile');
-			exit;
+			if($user->login($email,$password)){
 
-		} else {
-			$message = '<p class="error">Wrong email or password</p>';
-		}
+				//logged in rgo to profile page
+				header('Location: profile');
+				exit;
 
-	}//end of submit
+			} else {
+				$message = '<p class="error">Wrong email or password</p>';
+			}
 
-	if(isset($message)){ echo $message; }
-	?>
+		}//end of submit
 
-	<form action="" method="post">
-		<label>Email</label><input type="text" name="email" value=""  /><br>
-		<label>Password</label><input type="password" name="password" value=""  /><br>
-		<label></label><input type="submit" name="submit" value="Login"  /><br>
-	</form>
+		if(isset($message)){ echo $message; }
+		?>
 
-	<p>go to <a href="index.php">Home</a> page.</p>
+		<form action="" method="post">
+			<label>Email</label><input type="text" name="email" value=""  /><br>
+			<label>Password</label><input type="password" name="password" value=""  /><br>
+			<label></label><input type="submit" name="submit" value="Login"  /><br>
+		</form>
+
+		<p>go to <a href="index.php">Home</a> page.</p>
+		
+	</section>
 
 </body>
 </html>

@@ -35,9 +35,9 @@ if(isset($_GET['id']) && isset($_GET['code']))
 	if($row==1) {
 
 		//insert into database
-		$stmt = $db->prepare('UPDATE owc_users SET activated = :foobar WHERE userID = :userId');
+		$stmt = $db->prepare('UPDATE owc_users SET activated = :activated WHERE userID = :userId');
 		$stmt->execute(array(
-			':foobar' => NULL,
+			':activated' => NULL,
 			':userId' => $id
 		));
 
