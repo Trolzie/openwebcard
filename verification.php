@@ -24,42 +24,37 @@ if(isset($_GET['id']) && isset($_GET['code']))
 	$id=$_GET['id'];
 	$code=$_GET['code'];
 
-	echo $code;
-
-	// currently not finding any results
-	$stmt = $db->prepare('SELECT COUNT(*) FROM owc_users WHERE userID = :userID AND activated = :activated');
+	//find user to activate
+	$stmt = $db->prepare('SELECT email FROM owc_users WHERE userID = :userID AND activated = :activated');
 	$stmt->execute(array(
 		':userID' => $id,
 		':activated' => $code
 	));
-	// $row = $stmt->fetch();
-	$row = $stmt->fetchAll();
-	// $num_rows = count($row);
-
-	// echo $row['email'];
-	// echo $num_rows;
+	$row = $stmt->rowCount();
 
 	if($row==1) {
-		echo "WORKING!";
+
+		//insert into database
+		$stmt = $db->prepare('UPDATE owc_users SET activated = :foobar WHERE userID = :userId');
+		$stmt->execute(array(
+			':foobar' => NULL,
+			':userId' => $id
+		));
+
+		?>
+
+		<h2>You account has been successfuly verified, you are now able to log in.</h2>
+		<p>go to <a href="login.php">login</a> page.</p>
+
+	<?php
+
 	} else {
-		echo "NOT WORKING!";
+		echo "something went wrong.";
+		echo "Your account may already have been activated, in that case try and log in.";
+		echo "If this is not the case, please contact an administrator or resend activation email.";
 	}
 
-	// echo count($row);
 
-	// mysql_connect('localhost','root','');
-	// mysql_select_db('sample');
-	// $select=mysql_query("select email,password from verify where id='$id' and code='$code'");
-	// if(mysql_num_rows($select)==1)
-	// {
-	// 	while($row=mysql_fetch_array($select))
-	// 	{
-	// 		$email=$row['email'];
-	// 		$password=$row['password'];
-	// 	}
-	// 	$insert_user=mysql_query("insert into verified_user values('','$email','$password')");
-	// 	$delete=mysql_query("delete from verify where id='$id' and code='$code'");
-	// }
 }
 
 ?>
