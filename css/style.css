@@ -153,6 +153,18 @@ body {
 	transform: scale(1.25);
 	transition: background-color .5s, transform .5s ease-out;
 }
+.social-link.facebook:hover {
+	background-color: #3B5998;
+	border-radius: 100%;
+}
+.social-link.twitter:hover {
+	background-color: #1DCAFF;
+	border-radius: 100%;
+}
+.social-link.youtube:hover {
+	background-color: #B31217;
+	border-radius: 100%;
+}
 .social-link.linkedin:hover {
 	background-color: #0077B5;
 	border-radius: 100%;

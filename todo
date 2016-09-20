@@ -1,12 +1,8 @@
 TODO:
 
-user social links (start simple: facebook, twitter, linkedin, github, youtube)
-
 profile image (with upload option?)
 
 front page layout and design
-
-theme ideas: reverse current color sheme
 
 theme swtch (no custom styling yet, just 3 themes. 1 light, 1 dark, 1 semi colourful)
 
@@ -17,3 +13,7 @@ password reset / lost password
 	- verification for password change
 
 public profile page url beautify
+
+user social links (many more networks)
+
+more color schemes

@@ -79,6 +79,12 @@ require_once('config.php');
 							':userId' => $userId
 						));
 
+												//insert into database
+						$socialstmt = $db->prepare('INSERT INTO owc_usersocial (userKey) VALUES (:userId)');
+						$socialstmt->execute(array(
+							':userId' => $userId
+						));
+
 						//send confirmation email
 						$subject="Activation Code For OpenWebCard.com";
 						$verificationLink = 'http://openwebcard.com/verification.php?id='.$userId.'&code='.$code;

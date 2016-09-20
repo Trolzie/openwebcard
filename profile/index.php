@@ -57,6 +57,17 @@ if ($_SESSION['loggedin'] == 1) {
 							':userKey' => $userKey
 						));
 
+						//insert into database
+						$socialstmt = $db->prepare('UPDATE owc_usersocial SET userFacebookUrl = :userFacebookUrl, userTwitterUrl = :userTwitterUrl, userYoutubeUrl = :userYoutubeUrl, userLinkedinUrl = :userLinkedinUrl, userGithubUrl = :userGithubUrl WHERE userKey = :userKey');
+						$socialstmt->execute(array(
+							':userFacebookUrl' => $userFacebookUrl,
+							':userTwitterUrl' => $userTwitterUrl,
+							':userYoutubeUrl' => $userYoutubeUrl,
+							':userLinkedinUrl' => $userLinkedinUrl,
+							':userGithubUrl' => $userGithubUrl,
+							':userKey' => $userKey
+						));
+
 						// redirect to index page
 						// header('Location: index.php?action=updated');
 						header('Location: index.php');
@@ -75,6 +86,10 @@ if ($_SESSION['loggedin'] == 1) {
 			$stmt = $db->prepare('SELECT userImgUrl, userHeading, userSubheading, userBody, userProfileTheme, userKey FROM owc_userdata WHERE userKey = :userKey');
 			$stmt->execute(array(':userKey' => $_SESSION['userID']));
 			$row = $stmt->fetch();
+
+			$socialstmt = $db->prepare('SELECT userFacebookUrl, userTwitterUrl, userYoutubeUrl, userLinkedinUrl, userGithubUrl FROM owc_usersocial WHERE userKey = :userKey');
+			$socialstmt->execute(array(':userKey' => $_SESSION['userID']));
+			$socialRow = $socialstmt->fetch();
 		?>
 
 		<form action="" method="post">
@@ -86,6 +101,13 @@ if ($_SESSION['loggedin'] == 1) {
 			<p>theme:</p>
 			<label>light</label><input type="radio" name="userProfileTheme" value="light" <?php if($row['userProfileTheme'] == 'light') { echo 'checked'; } ?>/><br>
 			<label>dark</label><input type="radio" name="userProfileTheme" value="dark" <?php if($row['userProfileTheme'] == 'dark') { echo 'checked'; } ?>/><br>
+
+			<label>userFacebook</label><input type="text" name="userFacebookUrl" value="<?php echo $socialRow['userFacebookUrl']; ?>"/><br>
+			<label>userTwitter</label><input type="text" name="userTwitterUrl" value="<?php echo $socialRow['userTwitterUrl']; ?>"/><br>
+			<label>userYoutube</label><input type="text" name="userYoutubeUrl" value="<?php echo $socialRow['userYoutubeUrl']; ?>"/><br>
+			<label>userLinkedin</label><input type="text" name="userLinkedinUrl" value="<?php echo $socialRow['userLinkedinUrl']; ?>"/><br>
+			<label>userGithub</label><input type="text" name="userGithubUrl" value="<?php echo $socialRow['userGithubUrl']; ?>"/><br>
+			
 			<label></label><input type="submit" name="submit" value="Save"/><br>
 		</form>
 
