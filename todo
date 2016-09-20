@@ -1,8 +1,8 @@
 TODO:
 
-public profile page url beautify
+user social links (start simple: facebook, twitter, linkedin, github, youtube)
 
-profile image
+profile image (with upload option?)
 
 front page layout and design
 
@@ -15,3 +15,5 @@ create a 404 page
 password reset / lost password
 	- password reset page
 	- verification for password change
+
+public profile page url beautify

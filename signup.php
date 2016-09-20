@@ -10,7 +10,7 @@ require_once('config.php');
 <head>
 	<meta charset="utf-8">
 	<title>Open Web Card - Signup</title>
-	<!-- <link rel="stylesheet" href="../css/style.css"> -->
+	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 

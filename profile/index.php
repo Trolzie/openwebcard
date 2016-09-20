@@ -19,7 +19,7 @@ if ($_SESSION['loggedin'] == 1) {
 <head>
 	<meta charset="utf-8">
 	<title>Profile</title> <!-- add username once established -->
-	<!-- <link rel="stylesheet" href="../css/style.css"> -->
+	<link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 
@@ -47,8 +47,9 @@ if ($_SESSION['loggedin'] == 1) {
 					try {
 
 						//insert into database
-						$stmt = $db->prepare('UPDATE owc_userdata SET userHeading = :userHeading, userSubheading = :userSubheading, userBody = :userBody WHERE userKey = :userKey');
+						$stmt = $db->prepare('UPDATE owc_userdata SET userImgUrl = :userImgUrl, userHeading = :userHeading, userSubheading = :userSubheading, userBody = :userBody WHERE userKey = :userKey');
 						$stmt->execute(array(
+							':userImgUrl' => $userImgUrl,
 							':userHeading' => $userHeading,
 							':userSubheading' => $userSubheading,
 							':userBody' => $userBody,
@@ -70,13 +71,14 @@ if ($_SESSION['loggedin'] == 1) {
 
 		<?php
 			$userID = $_SESSION['userID'];
-			$stmt = $db->prepare('SELECT userHeading, userSubheading, userBody, userKey FROM owc_userdata WHERE userKey = :userKey');
+			$stmt = $db->prepare('SELECT userImgUrl, userHeading, userSubheading, userBody, userKey FROM owc_userdata WHERE userKey = :userKey');
 			$stmt->execute(array(':userKey' => $_SESSION['userID']));
 			$row = $stmt->fetch();
 		?>
 
 		<form action="" method="post">
 			<input type="hidden" name="userKey" value="<?php echo $row['userKey'];?>">
+			<label>userImage</label><input type="text" name="userImgUrl" value="<?php echo $row['userImgUrl']; ?>"/><br>
 			<label>userHeading</label><input type="text" name="userHeading" value="<?php echo $row['userHeading']; ?>"/><br>
 			<label>userSubheading</label><input type="text" name="userSubheading" value="<?php echo $row['userSubheading']; ?>"/><br>
 			<label>userBody</label><textarea type="text" name="userBody" rows="6" cols="50"/><?php echo $row['userBody']; ?></textarea><br>

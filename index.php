@@ -24,8 +24,8 @@ if (isset($_GET['profile'])) {
 
 	<?php
 	// if profile link, then show public profile
-	if ($userKey) {
-		$stmt = $db->prepare('SELECT userHeading, userSubheading, userBody FROM owc_userdata WHERE userKey = :userKey');
+	if (isset($userKey))	 {
+		$stmt = $db->prepare('SELECT userImgUrl, userHeading, userSubheading, userBody, userProfileTheme FROM owc_userdata WHERE userKey = :userKey');
 		$stmt->execute(array(
 			':userKey' => $userKey
 		));
@@ -38,10 +38,10 @@ if (isset($_GET['profile'])) {
 			</div>
 		</header>
 
-		<main>
+		<main class="profile__main">
 
-			<div class="profile-content-wrapper">
-				<img class="profile__image" src="profileimg.jpg" alt="profile image of Troels">
+			<div class="profile__content-wrapper <?php echo $row['userProfileTheme']; ?>">
+				<img class="profile__image" src="<?php echo $row['userImgUrl']; ?>" alt="profile image of Troels">
 				<h1 class="profile__heading">
 					<?php echo $row['userHeading']; ?>
 				</h1>

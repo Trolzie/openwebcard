@@ -13,7 +13,7 @@ body {
 	padding: 0;
 	margin: 0;
 }
-main {
+.profile__main {
 	height: 100%;
 	position: relative;
 	display: flex;
