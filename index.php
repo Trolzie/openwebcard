@@ -38,9 +38,9 @@ if (isset($_GET['profile'])) {
 			</div>
 		</header>
 
-		<main class="profile__main">
+		<main class="profile__main <?php echo $row['userProfileTheme']; ?>">
 
-			<div class="profile__content-wrapper <?php echo $row['userProfileTheme']; ?>">
+			<div class="profile__content-wrapper">
 				<img class="profile__image" src="<?php echo $row['userImgUrl']; ?>" alt="profile image of Troels">
 				<h1 class="profile__heading">
 					<?php echo $row['userHeading']; ?>

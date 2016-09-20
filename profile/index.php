@@ -47,12 +47,13 @@ if ($_SESSION['loggedin'] == 1) {
 					try {
 
 						//insert into database
-						$stmt = $db->prepare('UPDATE owc_userdata SET userImgUrl = :userImgUrl, userHeading = :userHeading, userSubheading = :userSubheading, userBody = :userBody WHERE userKey = :userKey');
+						$stmt = $db->prepare('UPDATE owc_userdata SET userImgUrl = :userImgUrl, userHeading = :userHeading, userSubheading = :userSubheading, userBody = :userBody, userProfileTheme = :userProfileTheme WHERE userKey = :userKey');
 						$stmt->execute(array(
 							':userImgUrl' => $userImgUrl,
 							':userHeading' => $userHeading,
 							':userSubheading' => $userSubheading,
 							':userBody' => $userBody,
+							':userProfileTheme' => $userProfileTheme,
 							':userKey' => $userKey
 						));
 
@@ -71,7 +72,7 @@ if ($_SESSION['loggedin'] == 1) {
 
 		<?php
 			$userID = $_SESSION['userID'];
-			$stmt = $db->prepare('SELECT userImgUrl, userHeading, userSubheading, userBody, userKey FROM owc_userdata WHERE userKey = :userKey');
+			$stmt = $db->prepare('SELECT userImgUrl, userHeading, userSubheading, userBody, userProfileTheme, userKey FROM owc_userdata WHERE userKey = :userKey');
 			$stmt->execute(array(':userKey' => $_SESSION['userID']));
 			$row = $stmt->fetch();
 		?>
@@ -82,6 +83,9 @@ if ($_SESSION['loggedin'] == 1) {
 			<label>userHeading</label><input type="text" name="userHeading" value="<?php echo $row['userHeading']; ?>"/><br>
 			<label>userSubheading</label><input type="text" name="userSubheading" value="<?php echo $row['userSubheading']; ?>"/><br>
 			<label>userBody</label><textarea type="text" name="userBody" rows="6" cols="50"/><?php echo $row['userBody']; ?></textarea><br>
+			<p>theme:</p>
+			<label>light</label><input type="radio" name="userProfileTheme" value="light" <?php if($row['userProfileTheme'] == 'light') { echo 'checked'; } ?>/><br>
+			<label>dark</label><input type="radio" name="userProfileTheme" value="dark" <?php if($row['userProfileTheme'] == 'dark') { echo 'checked'; } ?>/><br>
 			<label></label><input type="submit" name="submit" value="Save"/><br>
 		</form>
 
