@@ -45,7 +45,14 @@ if(!$user->is_logged_in()){ header('Location: ../index.php'); }
 
 					try {
 
-						//insert into database
+						//insert into owc_users table
+						$userstmt = $db->prepare('UPDATE owc_users SET username = :username WHERE userID = :userKey');
+						$userstmt->execute(array(
+							':username' => $username,
+							':userKey' => $userKey
+						));
+
+						//insert into owc_userdata table
 						$stmt = $db->prepare('UPDATE owc_userdata SET userImgUrl = :userImgUrl, userHeading = :userHeading, userSubheading = :userSubheading, userBody = :userBody, userProfileTheme = :userProfileTheme WHERE userKey = :userKey');
 						$stmt->execute(array(
 							':userImgUrl' => $userImgUrl,
@@ -56,7 +63,7 @@ if(!$user->is_logged_in()){ header('Location: ../index.php'); }
 							':userKey' => $userKey
 						));
 
-						//insert into database
+						//insert into owc_usersocial table
 						$socialstmt = $db->prepare('UPDATE owc_usersocial SET userFacebookUrl = :userFacebookUrl, userTwitterUrl = :userTwitterUrl, userYoutubeUrl = :userYoutubeUrl, userLinkedinUrl = :userLinkedinUrl, userGithubUrl = :userGithubUrl WHERE userKey = :userKey');
 						$socialstmt->execute(array(
 							':userFacebookUrl' => $userFacebookUrl,
@@ -82,6 +89,10 @@ if(!$user->is_logged_in()){ header('Location: ../index.php'); }
 
 		<?php
 			$userID = $_SESSION['userID'];
+			$userstmt = $db->prepare('SELECT username FROM owc_users WHERE userID = :userID');
+			$userstmt->execute(array(':userID' => $_SESSION['userID']));
+			$userrow = $userstmt->fetch();
+
 			$stmt = $db->prepare('SELECT userImgUrl, userHeading, userSubheading, userBody, userProfileTheme, userKey FROM owc_userdata WHERE userKey = :userKey');
 			$stmt->execute(array(':userKey' => $_SESSION['userID']));
 			$row = $stmt->fetch();
@@ -93,6 +104,9 @@ if(!$user->is_logged_in()){ header('Location: ../index.php'); }
 
 		<form action="" method="post">
 			<input type="hidden" name="userKey" value="<?php echo $row['userKey'];?>">
+			
+			<label>username</label><input type="text" name="username" value="<?php echo $userrow['username']; ?>"/><br>
+			
 			<label>userImage</label><input type="text" name="userImgUrl" value="<?php echo $row['userImgUrl']; ?>"/><br>
 			<label>userHeading</label><input type="text" name="userHeading" value="<?php echo $row['userHeading']; ?>"/><br>
 			<label>userSubheading</label><input type="text" name="userSubheading" value="<?php echo $row['userSubheading']; ?>"/><br>
