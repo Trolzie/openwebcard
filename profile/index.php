@@ -2,15 +2,14 @@
 //include config
 require_once('../config.php');
 
-if ($_SESSION['loggedin'] == 1) {
+if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == 1) {
 	echo "logged in, " . "user id: " . $_SESSION['userID'];
 } else {
 	echo "logged out";
 }
 
 //if not logged in redirect to login page
-
-// if(!$user->is_logged_in()){ header('Location: ../index.php'); }
+if(!$user->is_logged_in()){ header('Location: ../index.php'); }
 
 ?>
 
