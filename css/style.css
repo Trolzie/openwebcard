@@ -173,3 +173,7 @@ body {
 	background-color: #6E5494;
 	border-radius: 100%;
 }
+.social-link.dribbble:hover {
+	background-color: #EA4C89;
+	border-radius: 100%;
+}
