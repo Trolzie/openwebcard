@@ -153,6 +153,10 @@ body {
 	color: #DEDEDE;
 	fill: #DEDEDE;
 }
+.profile__main.dark .social-link svg {
+	color: #989898;
+	fill: #989898;
+}
 .social-link:hover svg {
 	color: #FFF;
 	fill: #FFF;

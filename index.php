@@ -48,17 +48,25 @@ if (isset($_GET['profile'])) {
 		<main class="profile__main <?php echo $row['userProfileTheme']; ?>">
 
 			<div class="profile__content-wrapper">
-				<img class="profile__image" src="<?php echo $row['userImgUrl']; ?>" alt="profile image of Troels">
-				<h1 class="profile__heading">
-					<?php echo $row['userHeading']; ?>
-				</h1>
-				<h2 class="profile__subheading">
-					<?php echo $row['userSubheading']; ?>
-				</h2>
-				<hr class="profile__hr">
-				<p class="profile__body">
-					<?php echo $row['userBody']; ?>
-				</p>
+				<?php if(isset($row['userImgUrl'])) { ?>
+					<img class="profile__image" src="<?php echo $row['userImgUrl']; ?>" alt="profile image of Troels">
+				<?php } ?>
+				<?php if(isset($row['userHeading'])) { ?>
+					<h1 class="profile__heading">
+						<?php echo $row['userHeading']; ?>
+					</h1>
+				<?php } ?>
+				<?php if(isset($row['userSubheading'])) { ?>
+					<h2 class="profile__subheading">
+						<?php echo $row['userSubheading']; ?>
+					</h2>
+				<?php } ?>
+				<?php if(isset($row['userBody'])) { ?>
+					<hr class="profile__hr">
+					<p class="profile__body">
+						<?php echo $row['userBody']; ?>
+					</p>
+				<?php } ?>
 				<ul class="profile__social-list">
 					<?php if($socialrow['userFacebookUrl']) { ?>
 						<li class="profile__social-list-item">
