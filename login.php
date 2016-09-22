@@ -10,6 +10,7 @@ if( $user->is_logged_in() ){ header('Location: profile'); }
 <head>
 	<meta charset="utf-8">
 	<title>Open Web Card - Login</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>

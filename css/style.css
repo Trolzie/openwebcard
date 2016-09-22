@@ -16,9 +16,13 @@ body {
 .profile__main {
 	height: 100%;
 	position: relative;
-	display: flex;
 	align-items: center;
 	justify-content: center;
+}
+@media (min-width: 768px) {
+	.profile__main {
+		display: flex;
+	}
 }
 .profile__main.dark {
 	background-color: #333;
@@ -28,15 +32,17 @@ body {
 .profile__content-wrapper {
 	width: 100%;
 	max-width: 520px;
-	padding: 0 5.6vw;
+	padding: 11.2vw 5.6vw;
+	box-sizing: border-box;
 }
 @media (min-width: 480px) {
 	.profile__content-wrapper {
 		padding: 0 40px;
 	}
 }
-@media (min-width: 780px) {
+@media (min-width: 768px) {
 	.profile__content-wrapper {
+		padding: 0;
 		max-width: 600px;
 	}
 }
@@ -64,7 +70,7 @@ body {
 		padding: 0;
 	}
 }
-@media (min-width: 780px) {
+@media (min-width: 768px) {
 	.profile__heading {
 		font-size: 4.8rem;
 	}
@@ -102,7 +108,7 @@ body {
 	color: #5694f1;
 }
 .profile__social-list {
-	padding: 0 4rem;
+	padding: 0;
 	margin: 7vw 0;
 }
 @media (min-width: 480px) {
@@ -110,10 +116,15 @@ body {
 		margin: 3.2rem 0;
 	}
 }
+@media (min-width: 768px) {
+	.profile__social-list {
+		padding: 0 4rem;
+	}
+}
 .profile__social-list .profile__social-list-item {
 	display: inline-block;
 	list-style-type: none;
-	margin: 0 1rem;
+	margin: 0 1rem 1rem;
 }
 .profile__hr {
 	border: none;
