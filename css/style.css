@@ -157,7 +157,8 @@ body {
 	color: #989898;
 	fill: #989898;
 }
-.social-link:hover svg {
+.social-link:hover svg,
+.profile__main.dark .social-link:hover svg {
 	color: #FFF;
 	fill: #FFF;
 }
@@ -192,3 +193,9 @@ body {
 	background-color: #EA4C89;
 	border-radius: 100%;
 }
+.social-link.instagram:hover {
+	background-color: #E1306C;
+	border-radius: 100%;
+}
+
+

@@ -65,7 +65,7 @@ if(!$user->is_logged_in()){ header('Location: ../index.php'); }
 						));
 
 						//insert into owc_usersocial table
-						$socialstmt = $db->prepare('UPDATE owc_usersocial SET userFacebookUrl = :userFacebookUrl, userTwitterUrl = :userTwitterUrl, userYoutubeUrl = :userYoutubeUrl, userLinkedinUrl = :userLinkedinUrl, userGithubUrl = :userGithubUrl, userDribbbleUrl = :userDribbbleUrl WHERE userKey = :userKey');
+						$socialstmt = $db->prepare('UPDATE owc_usersocial SET userFacebookUrl = :userFacebookUrl, userTwitterUrl = :userTwitterUrl, userYoutubeUrl = :userYoutubeUrl, userLinkedinUrl = :userLinkedinUrl, userGithubUrl = :userGithubUrl, userDribbbleUrl = :userDribbbleUrl, userInstagramUrl = :userInstagramUrl WHERE userKey = :userKey');
 						$socialstmt->execute(array(
 							':userFacebookUrl' => $userFacebookUrl,
 							':userTwitterUrl' => $userTwitterUrl,
@@ -73,6 +73,7 @@ if(!$user->is_logged_in()){ header('Location: ../index.php'); }
 							':userLinkedinUrl' => $userLinkedinUrl,
 							':userGithubUrl' => $userGithubUrl,
 							':userDribbbleUrl' => $userDribbbleUrl,
+							':userInstagramUrl' => $userInstagramUrl,
 							':userKey' => $userKey
 						));
 
@@ -99,7 +100,7 @@ if(!$user->is_logged_in()){ header('Location: ../index.php'); }
 			$stmt->execute(array(':userKey' => $_SESSION['userID']));
 			$row = $stmt->fetch();
 
-			$socialstmt = $db->prepare('SELECT userFacebookUrl, userTwitterUrl, userYoutubeUrl, userLinkedinUrl, userGithubUrl, userDribbbleUrl FROM owc_usersocial WHERE userKey = :userKey');
+			$socialstmt = $db->prepare('SELECT userFacebookUrl, userTwitterUrl, userYoutubeUrl, userLinkedinUrl, userGithubUrl, userDribbbleUrl, userInstagramUrl FROM owc_usersocial WHERE userKey = :userKey');
 			$socialstmt->execute(array(':userKey' => $_SESSION['userID']));
 			$socialRow = $socialstmt->fetch();
 		?>
@@ -123,7 +124,7 @@ if(!$user->is_logged_in()){ header('Location: ../index.php'); }
 			<label>userLinkedin</label><input type="text" name="userLinkedinUrl" value="<?php echo $socialRow['userLinkedinUrl']; ?>"/><br>
 			<label>userGithub</label><input type="text" name="userGithubUrl" value="<?php echo $socialRow['userGithubUrl']; ?>"/><br>
 			<label>userDribbble</label><input type="text" name="userDribbbleUrl" value="<?php echo $socialRow['userDribbbleUrl']; ?>"/><br>
-			
+			<label>userInstagram</label><input type="text" name="userInstagramUrl" value="<?php echo $socialRow['userInstagramUrl']; ?>"/><br>
 			<label></label><input type="submit" name="submit" value="Save"/><br>
 		</form>
 

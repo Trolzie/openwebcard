@@ -1,5 +1,7 @@
 TODO:
 
+username feedback if not unique
+
 create 'preview page' to see profile while editing
 
 profile image upload option (switch between link and uploaded img)
@@ -19,5 +21,6 @@ password reset / lost password
 public profile page url beautify
 
 user social links (many more networks)
+	next: email, instagram, pinterest
 
 more color schemes
