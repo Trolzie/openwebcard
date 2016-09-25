@@ -45,14 +45,20 @@ if(!$user->is_logged_in()){ header('Location: ../index.php'); }
 				if(!isset($error)){
 
 					try {
-
 						//insert into owc_users table
 						$userstmt = $db->prepare('UPDATE owc_users SET username = :username WHERE userID = :userKey');
 						$userstmt->execute(array(
 							':username' => $username,
 							':userKey' => $userKey
 						));
+					} catch(PDOException $e) {
+						//echo $e->getMessage();
+						if ($e->errorInfo[1] == 1062) {
+            				echo 'The username: "' . $username . '" already exists, please try another';
+						}
+					}
 
+					try {
 						//insert into owc_userdata table
 						$stmt = $db->prepare('UPDATE owc_userdata SET userImgUrl = :userImgUrl, userHeading = :userHeading, userSubheading = :userSubheading, userBody = :userBody, userProfileTheme = :userProfileTheme WHERE userKey = :userKey');
 						$stmt->execute(array(
@@ -63,7 +69,11 @@ if(!$user->is_logged_in()){ header('Location: ../index.php'); }
 							':userProfileTheme' => $userProfileTheme,
 							':userKey' => $userKey
 						));
+					} catch(PDOException $e) {
+						// echo $e->getMessage();
+					}
 
+					try {
 						//insert into owc_usersocial table
 						$socialstmt = $db->prepare('UPDATE owc_usersocial SET userFacebookUrl = :userFacebookUrl, userTwitterUrl = :userTwitterUrl, userYoutubeUrl = :userYoutubeUrl, userLinkedinUrl = :userLinkedinUrl, userGithubUrl = :userGithubUrl, userDribbbleUrl = :userDribbbleUrl, userInstagramUrl = :userInstagramUrl WHERE userKey = :userKey');
 						$socialstmt->execute(array(
@@ -76,15 +86,14 @@ if(!$user->is_logged_in()){ header('Location: ../index.php'); }
 							':userInstagramUrl' => $userInstagramUrl,
 							':userKey' => $userKey
 						));
-
-						// redirect to index page
-						// header('Location: index.php?action=updated');
-						header('Location: index.php');
-						exit;
-
 					} catch(PDOException $e) {
-					    echo $e->getMessage();
+						// echo $e->getMessage();
 					}
+
+					// redirect to index page
+					// header('Location: index.php?action=updated');
+					// header('Location: index.php');
+					// exit;
 				}
 			}
 
