@@ -1,5 +1,8 @@
 TODO:
 
+unique email feedback
+	- email check (soft check with regular expression)
+
 create 'preview page' to see profile while editing
 
 profile image upload option (switch between link and uploaded img)

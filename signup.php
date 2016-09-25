@@ -111,7 +111,10 @@ require_once('config.php');
 					exit;
 
 				} catch(PDOException $e) {
-					echo $e->getMessage();
+					// echo $e->getMessage();
+					if ($e->errorInfo[1] == 1062) {
+						echo 'The email: "' . $email . '" already exists.';
+					}
 				}
 			}
 		}

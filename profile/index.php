@@ -54,7 +54,7 @@ if(!$user->is_logged_in()){ header('Location: ../index.php'); }
 					} catch(PDOException $e) {
 						//echo $e->getMessage();
 						if ($e->errorInfo[1] == 1062) {
-            				echo 'The username: "' . $username . '" already exists, please try another';
+							echo 'The username: "' . $username . '" already exists, please try another';
 						}
 					}
 
