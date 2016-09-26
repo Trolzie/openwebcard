@@ -28,9 +28,7 @@ if(!$user->is_logged_in()){ header('Location: ../index.php'); }
 	<section>
 		
 		<h1>Open Web Card Profile</h1>
-
 		<p>welcome to your profile. Before we can create an online businesscard, we need to find out what you want to display.</p>
-
 		<h2>Your current profile:</h2>
 
 		<?php
