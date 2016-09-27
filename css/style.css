@@ -206,3 +206,14 @@ body {
 }
 
 
+
+.input {
+	width: 100%;
+}
+@media (min-width: 768px) {
+	.input {
+		max-width: 600px;
+	}
+}
+
+

@@ -115,23 +115,23 @@ if(!$user->is_logged_in()){ header('Location: ../index.php'); }
 		<form action="" method="post">
 			<input type="hidden" name="userKey" value="<?php echo $row['userKey'];?>">
 			
-			<label>username</label><input type="text" name="username" value="<?php echo $userrow['username']; ?>"/><br>
+			<label>username</label><input type="text" class="input" name="username" value="<?php echo $userrow['username']; ?>"/><br>
 			
-			<label>userImage</label><input type="text" name="userImgUrl" value="<?php echo $row['userImgUrl']; ?>"/><br>
-			<label>userHeading</label><input type="text" name="userHeading" value="<?php echo $row['userHeading']; ?>"/><br>
-			<label>userSubheading</label><input type="text" name="userSubheading" value="<?php echo $row['userSubheading']; ?>"/><br>
-			<label>userBody</label><textarea type="text" name="userBody" rows="6" cols="50"/><?php echo $row['userBody']; ?></textarea><br>
+			<label>userImage</label><input type="text" class="input" name="userImgUrl" value="<?php echo $row['userImgUrl']; ?>"/><br>
+			<label>userHeading</label><input type="text" class="input" name="userHeading" value="<?php echo $row['userHeading']; ?>"/><br>
+			<label>userSubheading</label><input type="text" class="input" name="userSubheading" value="<?php echo $row['userSubheading']; ?>"/><br>
+			<label>userBody</label><textarea type="text" class="input" name="userBody" rows="6" cols="50"/><?php echo $row['userBody']; ?></textarea><br>
 			<p>theme:</p>
 			<label>light</label><input type="radio" name="userProfileTheme" value="light" <?php if($row['userProfileTheme'] == 'light') { echo 'checked'; } ?>/><br>
 			<label>dark</label><input type="radio" name="userProfileTheme" value="dark" <?php if($row['userProfileTheme'] == 'dark') { echo 'checked'; } ?>/><br>
 
-			<label>userFacebook</label><input type="text" name="userFacebookUrl" value="<?php echo $socialRow['userFacebookUrl']; ?>"/><br>
-			<label>userTwitter</label><input type="text" name="userTwitterUrl" value="<?php echo $socialRow['userTwitterUrl']; ?>"/><br>
-			<label>userYoutube</label><input type="text" name="userYoutubeUrl" value="<?php echo $socialRow['userYoutubeUrl']; ?>"/><br>
-			<label>userLinkedin</label><input type="text" name="userLinkedinUrl" value="<?php echo $socialRow['userLinkedinUrl']; ?>"/><br>
-			<label>userGithub</label><input type="text" name="userGithubUrl" value="<?php echo $socialRow['userGithubUrl']; ?>"/><br>
-			<label>userDribbble</label><input type="text" name="userDribbbleUrl" value="<?php echo $socialRow['userDribbbleUrl']; ?>"/><br>
-			<label>userInstagram</label><input type="text" name="userInstagramUrl" value="<?php echo $socialRow['userInstagramUrl']; ?>"/><br>
+			<label>userFacebook</label><input type="text" class="input" name="userFacebookUrl" value="<?php echo $socialRow['userFacebookUrl']; ?>"/><br>
+			<label>userTwitter</label><input type="text" class="input" name="userTwitterUrl" value="<?php echo $socialRow['userTwitterUrl']; ?>"/><br>
+			<label>userYoutube</label><input type="text" class="input" name="userYoutubeUrl" value="<?php echo $socialRow['userYoutubeUrl']; ?>"/><br>
+			<label>userLinkedin</label><input type="text" class="input" name="userLinkedinUrl" value="<?php echo $socialRow['userLinkedinUrl']; ?>"/><br>
+			<label>userGithub</label><input type="text" class="input" name="userGithubUrl" value="<?php echo $socialRow['userGithubUrl']; ?>"/><br>
+			<label>userDribbble</label><input type="text" class="input" name="userDribbbleUrl" value="<?php echo $socialRow['userDribbbleUrl']; ?>"/><br>
+			<label>userInstagram</label><input type="text" class="input" name="userInstagramUrl" value="<?php echo $socialRow['userInstagramUrl']; ?>"/><br>
 			<label></label><input type="submit" name="submit" value="Save"/><br>
 		</form>
 
