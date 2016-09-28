@@ -207,8 +207,26 @@ body {
 
 
 
+
+
+.profile-edit {
+	with: 100%;
+	text-align: left;
+	padding: 1rem;
+}
+@media (min-width: 768px) {
+	.profile-edit {
+		max-width: 600px;
+		margin: auto;
+		/*display: flex;*/
+	}
+}
+
 .input {
 	width: 100%;
+	border: 1px solid #DEDEDE;
+	padding: 0.8rem;
+	font-size: 1.6rem;
 }
 @media (min-width: 768px) {
 	.input {
