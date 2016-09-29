@@ -116,10 +116,12 @@ if(!$user->is_logged_in()){ header('Location: ../index.php'); }
 			<input type="hidden" name="userKey" value="<?php echo $row['userKey'];?>">
 			
 			<h3>Username</h3>
-			<label>username</label><br>
+			<p class="profile-edit__helper-text">Your username determines the name of the url of your profile. Your public profile can be seen by visiting: http://openwebcard.com/?profile=trolzie</p>
+			<label>username</label>
 			<input type="text" class="input" name="username" value="<?php echo $userrow['username']; ?>"/><br>
 			
-			<h3>Your public information</h3>
+			<h3>Public Info</h3>
+			<p class="profile-edit__helper-text">Your public info shows visitors your name and story. You can choose exactly what people can read about you, and even show a small picture of yourself.</p>
 			<label>userImage</label><br>
 			<input type="text" class="input" name="userImgUrl" value="<?php echo $row['userImgUrl']; ?>"/><br>
 			<label>userHeading</label><br>
@@ -130,6 +132,7 @@ if(!$user->is_logged_in()){ header('Location: ../index.php'); }
 			<textarea type="text" class="input" name="userBody" rows="6" cols="50"/><?php echo $row['userBody']; ?></textarea><br>
 
 			<h3>Social links</h3>
+			<p class="profile-edit__helper-text">Your social links allows you to share the social platforms that you use. You can have any number of links and even a link to you blog and email.</p>
 			<label>userFacebook</label><br>
 			<input type="text" class="input" name="userFacebookUrl" value="<?php echo $socialRow['userFacebookUrl']; ?>"/><br>
 			<label>userTwitter</label><br>

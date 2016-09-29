@@ -221,6 +221,13 @@ body {
 		/*display: flex;*/
 	}
 }
+.profile-edit__helper-text {
+	background-color: #EFEFEF;
+	border-radius: 2px;
+	padding: 1rem;
+	font-size: 1.2rem;
+	line-height: 1.8rem;
+}
 
 .input {
 	width: 100%;
