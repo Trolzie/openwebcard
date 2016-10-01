@@ -36,7 +36,6 @@
 		
 		<h1>Open Web Card Profile</h1>
 		<p>welcome to your profile. Before we can create an online businesscard, we need to find out what you want to display.</p>
-		<h2>Your current profile:</h2>
 
 		<?php
 
@@ -128,15 +127,17 @@
 			<input type="text" class="input" name="username" value="<?php echo $userrow['username']; ?>"/><br>
 			
 			<h3>Public Info</h3>
-			<p class="profile-edit__helper-text">Your public info shows visitors your name and story. You can choose exactly what people can read about you, and even show a small picture of yourself.</p>
-			<label>userImage</label><br>
-			<input type="text" class="input" name="userImgUrl" value="<?php echo $row['userImgUrl']; ?>"/><br>
-			<label>userHeading</label><br>
-			<input type="text" class="input" name="userHeading" value="<?php echo $row['userHeading']; ?>"/><br>
-			<label>userSubheading</label><br>
-			<input type="text" class="input" name="userSubheading" value="<?php echo $row['userSubheading']; ?>"/><br>
-			<label>userBody</label><br>
-			<textarea type="text" class="input" name="userBody" rows="6" cols="50"/><?php echo $row['userBody']; ?></textarea><br>
+			<div class="profile-edit__group-wrapper">
+				<p class="profile-edit__helper-text">Your public info shows visitors your name and story. You can choose exactly what people can read about you, and even show a small picture of yourself.</p>
+				<label>userImage</label><br>
+				<input type="text" class="input" name="userImgUrl" value="<?php echo $row['userImgUrl']; ?>"/><br>
+				<label>userHeading</label><br>
+				<input type="text" class="input" name="userHeading" value="<?php echo $row['userHeading']; ?>"/><br>
+				<label>userSubheading</label><br>
+				<input type="text" class="input" name="userSubheading" value="<?php echo $row['userSubheading']; ?>"/><br>
+				<label>userBody</label><br>
+				<textarea type="text" class="input" name="userBody" rows="6" cols="50"/><?php echo $row['userBody']; ?></textarea><br>
+			</div>
 
 			<h3>Social links</h3>
 			<p class="profile-edit__helper-text">Your social links allows you to share the social platforms that you use. You can have any number of links and even a link to you blog and email.</p>
