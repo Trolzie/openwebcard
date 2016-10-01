@@ -1,16 +1,8 @@
 <?php
-//include config
-require_once('../config.php');
-
-if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == 1) {
-	echo "logged in, " . "user id: " . $_SESSION['userID'];
-} else {
-	echo "logged out";
-}
-
-//if not logged in redirect to login page
-if(!$user->is_logged_in()){ header('Location: ../index.php'); }
-
+	//include config
+	require_once('../config.php');
+	//if not logged in redirect to login page
+	if(!$user->is_logged_in()){ header('Location: ../index.php'); }
 ?>
 
 <!doctype html>
@@ -23,7 +15,22 @@ if(!$user->is_logged_in()){ header('Location: ../index.php'); }
 </head>
 <body>
 
-	<header></header>
+<?php
+	// if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == 1) {
+	// 	echo "logged in, " . "user id: " . $_SESSION['userID'];
+	// } else {
+	// 	echo "logged out";
+	// }
+?>
+
+	<header class="header">
+		<nav class="navigation">
+			<ul class="list">
+				<li class="list-item">Help</li>
+				<li class="list-item"><a href='logout.php'>Logout</a></li>
+			</ul>
+		</nav>
+	</header>
 
 	<section class="profile-edit">
 		
@@ -155,8 +162,6 @@ if(!$user->is_logged_in()){ header('Location: ../index.php'); }
 
 			<input type="submit" name="submit" value="Save"/><br>
 		</form>
-
-		<a href='logout.php'>Logout</a>
 		
 	</section>
 

@@ -207,16 +207,45 @@ body {
 
 
 
+/* * * * * * HEADER * * * * * */
+.header {
+	width: 100%;
+	height: 4rem;
+	background-color: #505050;
+	overflow: hidden;
+	color: #FFFFFF;
+	font-size: 1.2rem;
+}
+.header .navigation {
+	float: right;
+	margin-right: 2rem; 
+}
+.header .navigation .list {
+	margin: 0;
+	line-height: 4rem;
+}
+.header .navigation .list .list-item {
+	display: inline-block;
+	margin-left: 1rem;
+}
+.header .navigation .list .list-item a {
+	color: inherit;
+	text-decoration: none;
+}
+.header .navigation .list .list-item a:hover {
+	text-decoration: underline;
+}
 
 
+/* * * * * * PROFILE:EDIT * * * * * */
 .profile-edit {
 	with: 100%;
 	text-align: left;
-	padding: 1rem;
+	padding: 4rem 1rem;
 }
 @media (min-width: 768px) {
 	.profile-edit {
-		max-width: 600px;
+		max-width: 60rem;
 		margin: auto;
 		/*display: flex;*/
 	}

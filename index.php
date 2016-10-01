@@ -1,16 +1,6 @@
 <?php
 //include config
 require_once('config.php');
-
-if (isset($_GET['profile'])) {
-	$stmt = $db->prepare('SELECT userID FROM owc_users WHERE username = :username');
-	$stmt->execute(array(
-		':username' => $_GET['profile']
-	));
-	$row = $stmt->fetch();
-	$userKey = $row['userID'];
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -22,6 +12,17 @@ if (isset($_GET['profile'])) {
 	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
+	<?php
+		if (isset($_GET['profile'])) {
+		$stmt = $db->prepare('SELECT userID FROM owc_users WHERE username = :username');
+		$stmt->execute(array(
+			':username' => $_GET['profile']
+		));
+		$row = $stmt->fetch();
+			$userKey = $row['userID'];
+		}
+	?>
 
 	<?php
 	// if profile link, then show public profile
