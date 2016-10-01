@@ -26,7 +26,7 @@
 	<header class="header">
 		<nav class="navigation">
 			<ul class="list">
-				<li class="list-item">Help</li>
+				<li class="list-item"><a href='../help.php'>Help</a></li>
 				<li class="list-item"><a href='logout.php'>Logout</a></li>
 			</ul>
 		</nav>

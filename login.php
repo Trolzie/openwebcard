@@ -15,7 +15,14 @@ if( $user->is_logged_in() ){ header('Location: profile'); }
 </head>
 <body>
 
-	<header></header>
+	<header class="header">
+		<nav class="navigation">
+			<ul class="list">
+				<li class="list-item"><a href='help.php'>Help</a></li>
+				<li class="list-item"><a href='login.php'>Login</a></li>
+			</ul>
+		</nav>
+	</header>
 
 	<section>
 		

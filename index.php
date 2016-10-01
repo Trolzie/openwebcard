@@ -40,11 +40,14 @@ require_once('config.php');
 		$socialrow = $socialstmt->fetch();
 	?>
 
-		<header>
-			<div class="container">
-				<?php //include('components/navigation.php');?>
-			</div>
-		</header>
+	<header class="header">
+		<nav class="navigation">
+			<ul class="list">
+				<li class="list-item"><a href='help.php'>Help</a></li>
+				<li class="list-item"><a href='login.php'>Login</a></li>
+			</ul>
+		</nav>
+	</header>
 
 		<main class="profile__main <?php echo $row['userProfileTheme']; ?>">
 
