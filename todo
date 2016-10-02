@@ -1,5 +1,9 @@
 TODO:
 
+redo profile edit to resemble profile styles
+
+create proper labels for all input fields. possibly hide them afterwards
+
 front page layout and design
 
 logged in styles
@@ -19,9 +23,17 @@ password reset / lost password
 
 ::::::::::::: SECOND PRIORITY ::::::::::::::::
 
+help section
+
 public profile page url beautify
 
 user social links (many more networks)
 	next: email, pinterest		
 
 more color schemes
+
+
+
+
+self expanding text area (use for heading?)
+https://codepen.io/vsync/pen/czgrf
