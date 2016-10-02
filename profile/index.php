@@ -128,17 +128,19 @@
 				<input type="text" class="input" name="username" value="<?php echo $userrow['username']; ?>"/>
 			</div>
 
-			<h3>Public Info</h3>
-			<div class="profile-edit__group-wrapper">
-				<p class="profile-edit__helper-text">Your public info shows visitors your name and story. You can choose exactly what people can read about you, and even show a small picture of yourself.</p>
-				<label>userImage</label>
+			<!-- <h3>Public Info</h3> -->
+			<div class="profile__content-wrapper">
+				<!-- <p class="profile-edit__helper-text">Your public info shows visitors your name and story. You can choose exactly what people can read about you, and even show a small picture of yourself.</p> -->
+				<label class="label">user image url</label>
+				<img class="profile__image" src="http://www.freeiconspng.com/uploads/am-a-19-year-old-multimedia-artist-student-from-manila--21.png">
 				<input type="text" class="input" name="userImgUrl" value="<?php echo $row['userImgUrl']; ?>"/>
-				<label>user heading</label>
-				<textarea type="text" class="input profile__heading" name="userHeading" rows="1" cols="50"/><?php echo $row['userHeading']; ?></textarea>
-				<label>userSubheading</label>
-				<input type="text" class="input" name="userSubheading" value="<?php echo $row['userSubheading']; ?>"/>
-				<label>userBody</label>
-				<textarea type="text" class="input" name="userBody" rows="6" cols="50"/><?php echo $row['userBody']; ?></textarea>
+				<label class="label">user heading</label>
+				<textarea type="text" class="input profile__heading" name="userHeading" rows="1" cols="50" placeholder="Your name here.."/><?php echo $row['userHeading']; ?></textarea>
+				<label class="label">userSubheading</label>
+				<textarea type="text" class="input profile__subheading" name="userSubheading" rows="1" cols="50" placeholder="A few words about you.."><?php echo $row['userSubheading']; ?></textarea>
+				<hr class="profile__hr">
+				<label class="label">userBody</label>
+				<textarea type="text" class="input profile__body" name="userBody" rows="4" cols="50"/><?php echo $row['userBody']; ?></textarea>
 			</div>
 
 			<h3>Social links</h3>
