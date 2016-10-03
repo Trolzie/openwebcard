@@ -47,6 +47,8 @@ p {
 	background-color: #333;
 }
 
+
+
 /* profile */
 .profile__content-wrapper {
 	width: 100%;
@@ -229,7 +231,7 @@ p {
 
 
 /* * * * * * HEADER * * * * * */
-.header {
+/*.header {
 	width: 100%;
 	height: 4rem;
 	background-color: #505050;
@@ -255,22 +257,41 @@ p {
 }
 .header .navigation .list .list-item a:hover {
 	text-decoration: underline;
-}
+}*/
 
 
 /* * * * * * PROFILE:EDIT * * * * * */
 .profile-edit {
 	with: 100%;
-	/*text-align: left;*/
-	padding: 4rem 1rem;
+	height: 100%;
+	overflow: hidden;
+	/*padding: 4rem 1rem;*/
 }
 @media (min-width: 768px) {
 	.profile-edit {
-		max-width: 60rem;
+		/*max-width: 60rem;*/
 		margin: auto;
 		/*display: flex;*/
 	}
 }
+.profile-edit__form {
+	display: flex;
+	width: 100%;
+	height: 100%;
+}
+.profile-edit__settings {
+	width: 100%;
+	max-width: 260px;
+	background-color: #EEEEEE;
+}
+.profile-edit__content {
+	width: 100%;
+	max-width: 60rem;
+	margin: auto;
+}
+
+
+
 .profile-edit__helper-text {
 	background-color: #F3F3F3;
 	border-radius: 2px;
