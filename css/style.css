@@ -284,21 +284,26 @@ p {
 	max-width: 260px;
 	background-color: #EEEEEE;
 }
+.profile-edit__settings h1,
+.profile-edit__settings p {
+	padding: 0 2rem;
+}
 .profile-edit__content {
 	width: 100%;
 	max-width: 60rem;
 	margin: auto;
 }
-
-
-
-.profile-edit__helper-text {
-	background-color: #F3F3F3;
-	border-radius: 2px;
-	padding: 1rem;
-	font-size: 1.2rem;
-	line-height: 1.8rem;
+.profile-edit__save-btn {
+	width: 100%;
+	font-size: 1.4rem;
+	line-height: 2rem;
+	background-color: green;
 }
+
+
+
+
+
 
 .label {
 	display: none;

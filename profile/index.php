@@ -122,22 +122,22 @@
 		<form class="profile-edit__form" action="" method="post">
 			<input type="hidden" name="userKey" value="<?php echo $row['userKey'];?>">
 			<div class="profile-edit__settings">
-				<h1>Open Web Card Profile</h1>
-				<p>welcome to your profile. Before we can create an online businesscard, we need to find out what you want to display.</p>
-				<h3>Username</h3>
-				<div class="profile-edit__group-wrapper">
-					<p class="profile-edit__helper-text">Your username determines the name of the url of your profile. Your public profile can be seen by visiting: http://openwebcard.com/?profile=trolzie</p>
+				<h1>Edit your open web card</h1>
+				<p>Edit your profile by entering your name and iformation in the input fields on the right.</p>
+				<h3>Settings</h3>
+				<div class="">
+					<p class="">Your username determines the name of the url of your profile. Your public profile can be seen by visiting: http://openwebcard.com/?profile=trolzie</p>
 					<label>username</label>
 					<input type="text" class="input" name="username" value="<?php echo $userrow['username']; ?>"/>
 				</div>
-				<h3>Settings</h3>
 				<div class="profile-edit__group-wrapper">
-					<p>theme:</p>
+					<p>Color theme determines the base colours used on your profile</p>
 					<label>light</label><input type="radio" name="userProfileTheme" value="light" <?php if($row['userProfileTheme'] == 'light') { echo 'checked'; } ?>/>
 					<label>dark</label><input type="radio" name="userProfileTheme" value="dark" <?php if($row['userProfileTheme'] == 'dark') { echo 'checked'; } ?>/>
 				</div>
-				<input type="submit" name="submit" value="Save"/>
+				<input class="profile-edit__save-btn" type="submit" name="submit" value="Save changes"/>
 				<ul class="list">
+					<li class="list-item"><a href='export.php'>Export</a></li>
 					<li class="list-item"><a href='../help.php'>Help</a></li>
 					<li class="list-item"><a href='logout.php'>Logout</a></li>
 				</ul>

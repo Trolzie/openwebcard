@@ -10,6 +10,8 @@ front page layout and design
 
 logged in styles
 
+export: exports an html file which can be used on personal site.
+
 unique email feedback
 	- email check (soft check with regular expression)
 
