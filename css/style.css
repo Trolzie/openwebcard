@@ -243,10 +243,10 @@ p {
 	float: right;
 	margin-right: 2rem; 
 }
-.header .navigation .list {
-	margin: 0;
-	line-height: 4rem;
-}
+	.header .navigation .list {
+		margin: 0;
+		line-height: 4rem;
+	}
 .header .navigation .list .list-item {
 	display: inline-block;
 	margin-left: 1rem;
@@ -299,7 +299,14 @@ p {
 	line-height: 2rem;
 	background-color: green;
 }
-
+.profile-edit__settings .list {
+	padding: 2rem;
+	font-size: 1.4rem;
+	line-height: 2.2rem;
+}
+.profile-edit__settings .list .list-item {
+	list-style-type: none;
+}
 
 
 

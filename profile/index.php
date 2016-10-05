@@ -124,6 +124,14 @@
 			<div class="profile-edit__settings">
 				<h1>Edit your open web card</h1>
 				<p>Edit your profile by entering your name and iformation in the input fields on the right.</p>
+				
+				<!-- first box -->
+				<div>
+					<h3>Guide</h3>
+					<p>Try adding your name in the box on the right.</p>
+				</div>
+
+				<!-- second box -->
 				<h3>Settings</h3>
 				<div class="">
 					<p class="">Your username determines the name of the url of your profile. Your public profile can be seen by visiting: http://openwebcard.com/?profile=trolzie</p>
@@ -136,11 +144,14 @@
 					<label>dark</label><input type="radio" name="userProfileTheme" value="dark" <?php if($row['userProfileTheme'] == 'dark') { echo 'checked'; } ?>/>
 				</div>
 				<input class="profile-edit__save-btn" type="submit" name="submit" value="Save changes"/>
+				
+				<!-- third box -->
 				<ul class="list">
 					<li class="list-item"><a href='export.php'>Export</a></li>
 					<li class="list-item"><a href='../help.php'>Help</a></li>
 					<li class="list-item"><a href='logout.php'>Logout</a></li>
 				</ul>
+				
 			</div>
 			<div class="profile-edit__content">
 				<!-- <h3>Public Info</h3> -->
