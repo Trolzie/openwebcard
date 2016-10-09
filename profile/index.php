@@ -122,29 +122,45 @@
 		<form class="profile-edit__form" action="" method="post">
 			<input type="hidden" name="userKey" value="<?php echo $row['userKey'];?>">
 			<div class="profile-edit__settings">
-				<h1>Edit your open web card</h1>
-				<p>Edit your profile by entering your name and iformation in the input fields on the right.</p>
+				<h1>Profile</h1>
+				<p>Your profile page lets you update anything shown to the public.</p>
 				
-				<!-- first box -->
-				<div>
-					<h3>Guide</h3>
-					<p>Try adding your name in the box on the right.</p>
+				<hr>
+				
+				<div class="block block-notice success">
+					<h3>Welcome to Open Web Card</h3>
+					<p>You are well on your way already! This sidebar is where you change your settings.</p>
 				</div>
 
-				<!-- second box -->
-				<h3>Settings</h3>
-				<div class="">
-					<p class="">Your username determines the name of the url of your profile. Your public profile can be seen by visiting: http://openwebcard.com/?profile=trolzie</p>
-					<label>username</label>
-					<input type="text" class="input" name="username" value="<?php echo $userrow['username']; ?>"/>
+				<div class="block block-notice outstanding">
+					<h3>Let's get started</h3>
+					<p>Try entering your name, a short headline about, and a small paragraph about yourself, in the form fields on the right.</p>
 				</div>
-				<div class="profile-edit__group-wrapper">
+
+				<hr>
+
+				<div class="block">
+					<h3>Username/Url</h3>
+					<p class="">Your username determines the name of the url of your profile.</p>
+					<label class="label">username</label>
+					<input type="text" class="input" name="username" placeholder="username" value="<?php echo $userrow['username']; ?>"/>
+				</div>
+
+				<hr>
+
+				<div class="block">
+					<h3>Theme</h3>
 					<p>Color theme determines the base colours used on your profile</p>
 					<label>light</label><input type="radio" name="userProfileTheme" value="light" <?php if($row['userProfileTheme'] == 'light') { echo 'checked'; } ?>/>
 					<label>dark</label><input type="radio" name="userProfileTheme" value="dark" <?php if($row['userProfileTheme'] == 'dark') { echo 'checked'; } ?>/>
 				</div>
+				
+				<hr>
+
 				<input class="profile-edit__save-btn" type="submit" name="submit" value="Save changes"/>
 				
+
+
 				<!-- third box -->
 				<ul class="list">
 					<li class="list-item"><a href='export.php'>Export</a></li>

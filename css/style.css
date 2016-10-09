@@ -6,29 +6,34 @@ html {
 body {
 	height: 100%;
 	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-	color: #666;
-	text-align: center;
+	color: #343434;
+	/*text-align: center;*/
 	-webkit-font-smoothing: antialiased;
 	text-rendering: optimizeLegibility;
 	padding: 0;
 	margin: 0;
 }
 h1 {
-	font-size: 3rem;
+	font-size: 2rem;
+	font-weight: 300;
 }
 h2 {
 	font-size: 2rem;
 }
 h3 {
-	font-size: 2rem;
-	/*border-bottom: 2px solid #d8d8d8;*/
-	padding-bottom: 1rem;
-	/*padding-left: 1rem;*/
-    margin-bottom: 1.5rem;
+	font-size: 1.6rem;
+    font-weight: 500;
+    margin: 1rem 0;
 }
 p {
-	font-size: 1.6rem;
+	font-size: 1.4rem;
 	line-height: 2rem;
+	margin: 1rem 0;
+}
+hr {
+	margin: 2rem 0;
+    border: 0;
+    border-top: 0.1rem solid #eeeeee;
 }
 
 .profile__main {
@@ -55,6 +60,7 @@ p {
 	max-width: 520px;
 	padding: 11.2vw 5.6vw;
 	box-sizing: border-box;
+	text-align: center;
 }
 	@media (min-width: 480px) {
 		.profile__content-wrapper {
@@ -67,7 +73,6 @@ p {
 			max-width: 600px;
 		}
 	}
-
 .profile__image {
 	width: 100px;
 	height: 100px;
@@ -281,13 +286,12 @@ p {
 }
 .profile-edit__settings {
 	width: 100%;
+	padding: 1.4rem;
 	max-width: 260px;
-	background-color: #EEEEEE;
+	background-color: #fdfdfd;
+	border-right: 1px solid #eeeeee;
 }
-.profile-edit__settings h1,
-.profile-edit__settings p {
-	padding: 0 2rem;
-}
+
 .profile-edit__content {
 	width: 100%;
 	max-width: 60rem;
@@ -296,8 +300,12 @@ p {
 .profile-edit__save-btn {
 	width: 100%;
 	font-size: 1.4rem;
-	line-height: 2rem;
-	background-color: green;
+	line-height: 3rem;
+	font-weight: 500;
+	color: #FFFFFF;
+	border: none;
+	background: #50af51;
+	cursor: pointer;
 }
 .profile-edit__settings .list {
 	padding: 2rem;
@@ -318,19 +326,43 @@ p {
 .input {
 	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	width: 100%;
-	/*width: calc(100% - 2rem);*/
-	/*border: 1px solid #DEDEDE;*/
-	border: none;
-	padding: 0.8rem 1.8rem;
+	border: 0.1rem solid #DEDEDE;
+	padding: 0.8rem 0.8rem;
 	margin: 0.1rem;
-	/*font-size: 1.6rem;*/
 	box-sizing: border-box;
 }
-
 @media (min-width: 768px) {
 	.input {
 		max-width: 600px;
 	}
 }
+.profile__content-wrapper .input {
+	border: none;
+	padding: 0.8rem 1.8rem;
+}
 
 
+
+
+
+/* * * * * * BLOCKS * * * * * */
+.block-notice {
+	margin: 0 0 3rem 0;
+	padding: 0.6rem 1.4rem;
+	background-color: #EEEEEE;
+	border-left: 4px solid #999999;
+}
+.block-notice.success {
+	background-color: #f3f8f3;
+	border-left: 4px solid #50af51;
+}
+.block-notice.success h3 {
+	color: #50af51;
+}
+.block-notice.outstanding {
+	background-color: #f4f8fa;
+	border-left: 4px solid #5bc0de;
+}
+.block-notice.outstanding h3 {
+	color: #5bc0de;
+}
